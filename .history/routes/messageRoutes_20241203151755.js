@@ -14,14 +14,9 @@
  * 9. You may not use this code in any harmful or malicious way.
  *10. For more details, please contact: [pawanpediredla@gmail.com]
  */
- module.exports=(io)=>{
-    io.on('connection',()=>{
-        console.log('user connected');
-socket.on('sendMessage',(messageData)=>{
-    io.emit('receiveMessage',messageData)
-})
-socket.on('disconnect',()=>{
-    console.log('user disconnected')
-})
-    })
- }
+const express = require('express')
+const router = express.Router()
+const messageController =require('../controllers/messageController')
+router.get('/',messageController.getAllMessages)
+router.get('/',message.createMessage)
+module.exports=router;
