@@ -14,16 +14,20 @@
  * 9. You may not use this code in any harmful or malicious way.
  *10. For more details, please contact: [pawanpediredla@gmail.com]
  */
-module.exports = (io) => {
-    io.on('connection', (socket) => {
-        console.log('User connected');
-
-        socket.on('sendMessage', (messageData) => {
-            io.emit('receiveMessage', messageData);
-        });
-
-        socket.on('disconnect', () => {
-            console.log('User disconnected');
-        });
-    });
-};
+const express = require('express')
+const socketIo= require('socket.io')
+const path =require('path')
+const http = require('http')
+const app = express()
+const server = http.createServer(app)
+app.use(express.static(path.join(__dirname,'public')))
+app.use(express.urlencoded({
+    extended:true
+}))
+app.use(express.json())
+const messageRoutes = require('./routes/messageRoutes')
+app.use('/api/messages',messageRoutes)
+require('./socket/socketEvent')(io);
+server.listen(process.env.PORT || 3000,()=>{
+    console.log('server is running....');
+})

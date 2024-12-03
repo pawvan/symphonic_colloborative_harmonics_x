@@ -14,16 +14,14 @@
  * 9. You may not use this code in any harmful or malicious way.
  *10. For more details, please contact: [pawanpediredla@gmail.com]
  */
-module.exports = (io) => {
-    io.on('connection', (socket) => {
-        console.log('User connected');
-
-        socket.on('sendMessage', (messageData) => {
-            io.emit('receiveMessage', messageData);
-        });
-
-        socket.on('disconnect', () => {
-            console.log('User disconnected');
-        });
-    });
-};
+ 
+ 
+ cted');
+seData)=>{
+ ssageData)
+}
+s
+ ted')
+}
+ 
+ 
